@@ -2,289 +2,486 @@
 
 <div align="center">
 
-![Manager_Jar Logo](https://img.shields.io/badge/Manager_Jar-v0.1.0-blue?style=for-the-badge&logo=rust)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
+![Rust](https://img.shields.io/badge/rust-1.87+-orange.svg)
+![Version](https://img.shields.io/badge/version-0.1.0-green.svg)
 
-**专业的 Java 应用程序生命周期管理工具**
+**Professional Java Application Lifecycle Management Tool**
 
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen)](https://github.com/CreaStar/Manager_Jar)
-[![Language](https://img.shields.io/badge/Language-Rust-orange)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-success)](https://github.com/CreaStar/Manager_Jar)
+A powerful, modular JAR package manager for starting, stopping, restarting, monitoring, and batch operations of Java applications.
+
+[Features](#features) • [Installation](#installation) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Contributing](#contributing)
 
 </div>
 
 ---
 
-## 🎯 项目简介
+## Features
 
-**Manager_Jar** 是一个用 Rust 开发的现代化 JAR 包管理工具，专门为简化 Java 应用程序的部署、监控和维护而设计。它提供了直观的命令行界面，支持批量操作、进程监控、日志管理等功能。
+### 🚀 Core Functionality
+- **Process Management**: Start, stop, restart JAR applications
+- **Status Monitoring**: Real-time JAR status and resource monitoring  
+- **Log Management**: Centralized log viewing and management
+- **Configuration Management**: Flexible parameter configuration and presets
 
-### ✨ 核心特性
+### 🔥 Advanced Features
+- **Batch Operations**: Manage multiple JAR applications simultaneously
+- **Sequence Management**: Start/stop application groups in predefined order
+- **Daemon Process**: System-level daemon with auto-restart and monitoring
+- **Security Protection**: Safe process management and resource protection
 
-🔄 **智能进程管理** - 启动、停止、重启、状态监控  
-📦 **批量操作** - 同时管理多个 JAR 应用  
-🔗 **序列管理** - 按预定义顺序执行批量任务  
-🤖 **守护进程** - 24/7 健康监控和自动重启  
-📋 **日志管理** - 集中日志收集、查看、清理  
-🎨 **美观界面** - 彩色输出和友好的用户体验  
-🚀 **高性能** - 基于 Rust，内存安全且执行高效  
-🌐 **跨平台** - 完美支持 Windows、Linux、macOS  
+### 💻 Developer Friendly
+- **Modern CLI**: Intuitive command-line interface with colored output
+- **Command Completion**: Auto-completion for Bash, Zsh, PowerShell
+- **Comprehensive Documentation**: Complete usage guide and API documentation
+- **Modular Design**: Clean code structure, easy to extend and maintain
 
----
+## Installation
 
-## 🚀 快速开始
+### Prerequisites
+- Windows operating system
+- Java Runtime Environment (JRE 8+)
+- One or more JAR files
 
-### 安装
+### Method 1: Build from Source (Recommended)
 
-#### 方式一：下载预编译版本
-从 [Releases](https://github.com/CreaStar/Manager_Jar/releases) 页面下载适合您操作系统的版本。
-
-#### 方式二：从源码构建
-```bash
-# 克隆仓库
-git clone https://github.com/CreaStar/Manager_Jar.git
+```powershell
+# Clone the repository
+git clone https://github.com/YourUsername/Manager_Jar.git
 cd Manager_Jar
 
-# 构建发布版本
+# Build release version
 cargo build --release
-# 或使用构建脚本
-./build.sh release     # Linux/macOS
-.\build.ps1 release    # Windows PowerShell
+
+# Optional: Add executable to PATH
+copy .\target\release\Manager_Jar.exe C:\Windows\System32\
 ```
 
-### 基础使用
+### Method 2: Using Build Scripts
 
-```bash
-# 查看版本信息
-Manager_Jar version
+```powershell
+# PowerShell users
+.\build.ps1
 
-# 列出可用的 JAR 文件
-Manager_Jar list
-
-# 启动 JAR 应用
-Manager_Jar start myapp.jar
-
-# 查看应用状态
-Manager_Jar status
-
-# 停止应用
-Manager_Jar stop myapp.jar
-
-# 生成命令补全脚本
-Manager_Jar completions bash > ~/.manager_jar_completions
+# Or using CMD
+.\build.bat
 ```
 
----
+### Method 3: Development Environment
 
-## 📖 详细文档
+```powershell
+# Install Rust (if not installed)
+# Visit https://rustup.rs/
 
-完整的使用说明请查看：
+# Clone and enter project directory
+git clone https://github.com/YourUsername/Manager_Jar.git
+cd Manager_Jar
 
-📚 **[详细使用指南](USER_GUIDE.md)** - 包含所有功能的详细说明和示例
-
-主要内容包括：
-- 🛠️ [安装指南](USER_GUIDE.md#-安装指南)
-- 📖 [基础使用](USER_GUIDE.md#-基础使用)  
-- 🔧 [高级功能](USER_GUIDE.md#-高级功能)
-- 📦 [批量操作](USER_GUIDE.md#-批量操作)
-- 🔗 [序列管理](USER_GUIDE.md#-序列管理)
-- 🤖 [守护进程](USER_GUIDE.md#-守护进程)
-- 📋 [日志管理](USER_GUIDE.md#-日志管理)
-- 🔍 [故障排除](USER_GUIDE.md#-故障排除)
-
----
-
-## 🎮 使用示例
-
-### 单应用管理
-```bash
-# 启动应用（带 JVM 参数）
-Manager_Jar start myapp.jar -Xmx1g -Dspring.profiles.active=prod
-
-# 快速重启
-Manager_Jar quick myapp.jar
-
-# 查看实时日志
-Manager_Jar log myapp.jar --follow
+# Run in development mode
+cargo run -- --help
 ```
 
-### 批量操作
-```bash
-# 批量启动多个服务
-Manager_Jar batch start database.jar config-server.jar eureka.jar
+## Quick Start
 
-# 批量停止所有应用
-Manager_Jar batch stop *.jar
+### Basic Operations
 
-# 批量重启
-Manager_Jar batch restart service*.jar
+```powershell
+# Start a JAR application
+Manager_Jar.exe start myapp.jar
+
+# Start with parameters
+Manager_Jar.exe start myapp.jar -Xmx1g -server
+
+# Check status
+Manager_Jar.exe status myapp.jar
+
+# Stop application
+Manager_Jar.exe stop myapp.jar
+
+# Restart application
+Manager_Jar.exe restart myapp.jar
 ```
 
-### 序列管理
-```bash
-# 创建微服务启动序列
-Manager_Jar sequence create microservices database.jar config.jar eureka.jar gateway.jar user-service.jar
+### Configuration Management
 
-# 按序列启动所有服务
-Manager_Jar sequence start microservices
+```powershell
+# Save configuration
+Manager_Jar.exe config myapp.jar --args "-Xmx2g -server" --name "production"
 
-# 检查序列状态
-Manager_Jar sequence status microservices
+# Quick start with saved configuration
+Manager_Jar.exe quick myapp.jar --config "production"
+
+# List all configurations
+Manager_Jar.exe configs list
 ```
 
-### 守护进程监控
-```bash
-# 启动守护进程
-Manager_Jar daemon start --background
+### Batch Operations
 
-# 查看监控状态
-Manager_Jar daemon status
+```powershell
+# Batch start multiple applications
+Manager_Jar.exe batch start app1.jar app2.jar app3.jar
 
-# 添加应用到自动重启监控
-Manager_Jar start myapp.jar --monitor
+# Batch stop
+Manager_Jar.exe batch stop app1.jar app2.jar
+
+# Batch status check
+Manager_Jar.exe batch status app1.jar app2.jar
 ```
 
----
+### Sequence Management
 
-## 🏗️ 项目架构
+```powershell
+# Create application sequence
+Manager_Jar.exe sequence create webapps app1.jar app2.jar app3.jar
+
+# Start by sequence (app1 -> app2 -> app3)
+Manager_Jar.exe sequence start webapps
+
+# Stop by sequence (app3 -> app2 -> app1)
+Manager_Jar.exe sequence stop webapps
+```
+
+### Log Management
+
+```powershell
+# View real-time logs
+Manager_Jar.exe log myapp.jar --follow
+
+# View last 100 lines
+Manager_Jar.exe log myapp.jar --lines 100
+
+# View error logs
+Manager_Jar.exe logs error myapp.jar
+```
+
+### Daemon Process
+
+```powershell
+# Start system daemon
+Manager_Jar.exe daemon start
+
+# Add application to monitoring with auto-restart
+Manager_Jar.exe daemon add myapp.jar --auto-restart
+
+# Check daemon status
+Manager_Jar.exe daemon status
+```
+
+## Usage Examples
+
+### Example 1: Microservice Management
+```powershell
+# Create microservice startup sequence
+Manager_Jar.exe sequence create microservices config-server.jar eureka-server.jar gateway.jar user-service.jar
+
+# Start all services in sequence
+Manager_Jar.exe sequence start microservices
+
+# Start daemon monitoring
+Manager_Jar.exe daemon start
+
+# Add critical services to monitoring
+Manager_Jar.exe daemon add config-server.jar --auto-restart
+Manager_Jar.exe daemon add eureka-server.jar --auto-restart
+```
+
+### Example 2: Development Environment
+```powershell
+# Save debug configuration
+Manager_Jar.exe config myapp.jar --args "-Xmx1g -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005" --name "debug"
+
+# Quick start in debug mode
+Manager_Jar.exe quick myapp.jar --config "debug"
+
+# View real-time logs
+Manager_Jar.exe log myapp.jar --follow
+```
+
+### Example 3: Production Deployment
+```powershell
+# Save production configuration
+Manager_Jar.exe config webapp.jar --args "-Xmx4g -Xms2g -server -XX:+UseG1GC" --name "production"
+
+# Start application
+Manager_Jar.exe quick webapp.jar --config "production"
+
+# Start background daemon
+Manager_Jar.exe daemon start --background
+
+# Add to monitoring with auto-restart
+Manager_Jar.exe daemon add webapp.jar --auto-restart
+```
+
+## Project Structure
 
 ```
 Manager_Jar/
-├── 🎯 cli/          # 命令行接口
-├── ⚙️  core/         # 核心功能（配置、进程、日志）
-├── 🔄 operations/   # 操作模块（批量、序列）
-├── 🤖 daemon/       # 守护进程
-├── 🛠️  utils/        # 工具模块
-└── 📄 build.rs      # 构建脚本
+├── src/
+│   ├── main.rs              # Main program entry
+│   ├── build_info.rs        # Build information (auto-generated)
+│   ├── cli/                 # Command line interface
+│   │   ├── commands.rs      # CLI command definitions
+│   │   └── completions.rs   # Command completion
+│   ├── core/                # Core functionality
+│   │   ├── process.rs       # Process management
+│   │   ├── config.rs        # Configuration management
+│   │   └── logging.rs       # Logging system
+│   ├── operations/          # Operation modules
+│   │   ├── batch.rs         # Batch operations
+│   │   └── sequence.rs      # Sequence management
+│   ├── daemon/              # Daemon process
+│   │   ├── thread_daemon.rs # Thread daemon
+│   │   └── system_daemon.rs # System daemon
+│   └── utils/               # Utility modules
+│       ├── macros.rs        # Macro definitions
+│       ├── files.rs         # File operations
+│       └── display.rs       # Display utilities
+├── build.rs                 # Build script
+├── Cargo.toml              # Project configuration
+├── build.ps1               # PowerShell build script
+├── build.sh                # Bash build script
+├── build.bat               # CMD build script
+├── README.md               # Project documentation
+└── USAGE_GUIDE.md          # Detailed usage guide
 ```
 
-**模块化设计**：清晰的代码结构，易于维护和扩展  
-**Rust 生态**：充分利用 Rust 的性能和安全优势  
-**现代工具链**：集成 Clap、Colored、Chrono 等优秀库  
+## Configuration
 
----
+### Global Configuration
 
-## 🛠️ 开发
+```powershell
+# Set global configuration
+Manager_Jar.exe global-config set log_level info
+Manager_Jar.exe global-config set max_processes 10
+Manager_Jar.exe global-config set default_jvm_args "-Xmx1g"
 
-### 构建项目
+# View configuration
+Manager_Jar.exe global-config show
 
-```bash
-# 开发构建
-cargo build
+# Reset configuration
+Manager_Jar.exe global-config reset
+```
 
-# 发布构建
-cargo build --release
+### Configuration File Locations
 
-# 运行测试
+- **Windows**: `%APPDATA%\Manager_Jar\`
+  - Global config: `config\global.toml`
+  - JAR configs: `config\jars\*.toml`
+  - Log files: `logs\*.log`
+
+### Configuration Example
+
+```toml
+# global.toml
+[settings]
+log_level = "info"
+max_processes = 10
+default_jvm_args = "-Xmx1g -server"
+auto_restart = true
+
+[daemon]
+check_interval = 30
+restart_delay = 5
+max_restart_attempts = 3
+```
+
+## Documentation
+
+- 📖 **[Detailed Usage Guide](USAGE_GUIDE.md)** - Complete command reference and examples
+- 🏗️ **[Project Structure](#project-structure)** - Architecture and module organization
+- ⚙️ **[Configuration](#configuration)** - Configuration management guide
+- 🔧 **[Development](#development)** - Development setup and contribution guide
+
+## Development
+
+### Development Environment Setup
+
+```powershell
+# 1. Install Rust
+# Visit https://rustup.rs/ for installation
+
+# 2. Clone project
+git clone https://github.com/YourUsername/Manager_Jar.git
+cd Manager_Jar
+
+# 3. Install dependencies and run tests
 cargo test
 
-# 代码检查
+# 4. Run in development mode
+cargo run -- --help
+```
+
+### Available Development Tasks
+
+```powershell
+# Build project
+cargo build
+
+# Run tests
+cargo test
+
+# Check code
 cargo check
 
-# 格式化代码
+# Format code
 cargo fmt
+
+# Clean build files
+cargo clean
+
+# Build release version
+cargo build --release
 ```
 
-### 使用构建脚本
+### VS Code Tasks
 
-```bash
-# Linux/macOS
-./build.sh help
+The project includes pre-configured VS Code tasks:
 
-# Windows PowerShell
-.\build.ps1 help
+- `Build Manager_Jar` - Build project
+- `Build Manager_Jar Release` - Build release version
+- `Run Tests` - Run tests
+- `Format Code` - Format code
+- `Check Code` - Check code
+- `Run Manager_Jar` - Run program
 
-# Windows CMD
-build.bat help
+## Command Reference
+
+### Available Commands
+
+```
+Manager_Jar.exe [COMMAND]
+
+Commands:
+  completions    Generate command line completion scripts
+  start          Start specified JAR package
+  stop           Stop specified JAR package
+  restart        Restart specified JAR package
+  status         Check JAR package status
+  list           List all available JAR files
+  log            View JAR logs
+  kill           Force kill JAR process
+  config         Configure JAR parameters
+  quick          Quick start JAR with saved configuration
+  batch          Batch operations
+  sequence       Sequence batch management for JAR groups
+  logs           Log management
+  configs        Configuration management
+  global-config  Global configuration management
+  daemon         System-level daemon process management
+  version        Show version information
+  help           Print help message or help for given subcommand
 ```
 
-### 项目依赖
+### Command Completion
 
-- **clap** - 命令行参数解析
-- **colored** - 终端色彩输出
-- **chrono** - 时间日期处理
-- **serde** + **toml** - 配置文件序列化
-- **regex** - 正则表达式
-- **dirs** - 跨平台目录处理
+```powershell
+# Generate PowerShell completion
+Manager_Jar.exe completions powershell > Manager_Jar_completions.ps1
 
----
+# Generate Bash completion
+Manager_Jar.exe completions bash > Manager_Jar_completions.bash
 
-## 📊 系统要求
+# Generate Zsh completion
+Manager_Jar.exe completions zsh > Manager_Jar_completions.zsh
+```
 
-### 运行环境
-- **Java Runtime Environment (JRE) 8+** - 运行 JAR 包所需
-- **操作系统**：Windows 10+、Linux、macOS
+## System Requirements
 
-### 性能特性
-- **内存占用**：< 10MB
-- **启动时间**：< 100ms
-- **CPU 使用**：接近零开销
-- **平台支持**：x86_64、ARM64
+### Runtime Environment
+- **Java Runtime Environment (JRE) 8+** - Required for running JAR packages
+- **Operating System**: Windows 10+
 
----
+### Performance Characteristics
+- **Memory Usage**: < 10MB
+- **Startup Time**: < 100ms
+- **CPU Usage**: Near-zero overhead
+- **Platform Support**: x86_64, ARM64
 
-## 🤝 贡献
+## Contributing
 
-我们欢迎各种形式的贡献！
+We welcome contributions of all kinds!
 
-### 如何贡献
+### How to Contribute
 
-1. **Fork** 本仓库
-2. 创建您的功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交您的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开一个 **Pull Request**
+1. **Report Bugs**: Describe issues in [Issues](../../issues)
+2. **Feature Requests**: Propose new features in [Issues](../../issues)
+3. **Code Contributions**: Fork the project and submit Pull Requests
+4. **Documentation**: Help improve documentation and examples
 
-### 开发指南
+### Contribution Guidelines
 
-- 遵循 Rust 代码风格规范
-- 编写单元测试和文档
-- 确保所有测试通过
-- 更新相关文档
+1. Fork this repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
----
+### Development Standards
 
-## 📞 支持
+- Use `cargo fmt` to format code
+- Use `cargo clippy` to check code quality
+- Add tests for new features
+- Update relevant documentation
 
-### 获取帮助
+## Changelog
 
-- 📋 **Issues**: [提交问题](https://github.com/CreaStar/Manager_Jar/issues)
-- 💬 **讨论**: [GitHub Discussions](https://github.com/CreaStar/Manager_Jar/discussions)
-- 📧 **邮箱**: creastar@gmail.com
+### v0.1.0 (2025-07-02)
 
-### 文档资源
+#### 🎉 Initial Release
+- ✨ Complete JAR package management functionality
+- 🏗️ Modular architecture design
+- 🎨 Modern CLI interface
+- 📝 Complete documentation and user guide
 
-- 📚 [完整使用指南](USER_GUIDE.md)
-- 🔧 [开发者文档](docs/DEVELOPMENT.md)
-- 📝 [变更日志](CHANGELOG.md)
-- ❓ [常见问题](USER_GUIDE.md#-常见问题)
+#### 🚀 Core Features
+- JAR package start, stop, restart
+- Process status monitoring
+- Log management system
+- Configuration management
 
----
+#### 🔥 Advanced Features
+- Batch operation support
+- Sequence management
+- System daemon process
+- Command line completion
 
-## 📄 许可证
+#### 🛠️ Technical Features
+- Rust 1.87+ support
+- Automatic build information injection
+- Cross-platform build scripts
+- Zero compilation warnings
 
-本项目采用 **MIT** 许可证。详情请查看 [LICENSE](LICENSE) 文件。
+## Support
 
----
+### Getting Help
 
-## 🎉 致谢
+- 📚 Check [USAGE_GUIDE.md](USAGE_GUIDE.md) for detailed usage guide
+- 💬 Ask questions in [Issues](../../issues)
+- 📧 Contact maintainer: creastar@gmail.com
 
-感谢所有为项目做出贡献的开发者和用户！
+### Documentation Resources
 
-特别感谢：
-- **Rust 社区** - 提供优秀的生态系统
-- **开源社区** - 各种优秀的库和工具
-- **用户反馈** - 帮助我们不断改进
+- 📚 [Complete Usage Guide](USAGE_GUIDE.md)
+- 🔧 [Development Documentation](docs/DEVELOPMENT.md)
+- 📝 [Changelog](CHANGELOG.md)
+- ❓ [FAQ](USAGE_GUIDE.md#troubleshooting)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-### 🌟 如果这个项目对您有帮助，请给我们一个 Star！
+**⭐ If this project helps you, please give it a star!**
 
-[![GitHub stars](https://img.shields.io/github/stars/CreaStar/Manager_Jar?style=social)](https://github.com/CreaStar/Manager_Jar/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/CreaStar/Manager_Jar?style=social)](https://github.com/CreaStar/Manager_Jar/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/YourUsername/Manager_Jar?style=social)](../../stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/YourUsername/Manager_Jar?style=social)](../../network/members)
 
-**[⬆ 回到顶部](#manager_jar)**
+Made with ❤️ by [CreaStar](https://github.com/CreaStar)
+
+**[⬆ Back to Top](#manager_jar)**
 
 </div>
